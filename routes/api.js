@@ -22,7 +22,7 @@ getToken = headers => {
   }
 };
 
-router.post('/signup', (req, res) => {
+router.post('/register', (req, res) => {
   if (!req.body.username || !req.body.password) {
     res.json({success: false, msg: 'Please pass username and password.'});
   } else {
@@ -84,11 +84,6 @@ router.get('/games', passport.authenticate('jwt', { session: false}), (req, res)
   } else {
     return res.status(403).send({success: false, msg: 'Unauthorized.'});
   }
-});
-
-router.get('/logout', passport.authenticate('jwt', { session: false}), function(req, res) {
-  req.logout();
-  res.json({success: true, msg: 'Sign out successfully.'});
 });
 
 module.exports = router;
