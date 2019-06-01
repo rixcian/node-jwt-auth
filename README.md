@@ -4,6 +4,7 @@
 It's a simple Node REST JWT authentication server that is built with Mongoose and Passport.
 
 <br />
+
 ---
 
 ### How to test it?
