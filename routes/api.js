@@ -1,13 +1,10 @@
-const mongoose = require('mongoose'),
-      passport = require('passport'),
+const passport = require('passport'),
       bcrypt = require('bcrypt-nodejs'),
       dbConfig = require('../config/database');
       require('../config/passport')(passport);
 const express = require('express'),
       jwt = require('jsonwebtoken'),
-      router = express.Router(),
-      User = require('../models/User'),
-      Game = require('../models/Game');
+      router = express.Router();
 
 getToken = headers => {
   if (headers && headers.authorization) {

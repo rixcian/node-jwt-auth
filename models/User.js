@@ -1,31 +1,23 @@
-const mongoose = require('mongoose'),
-      bcrypt = require('bcrypt-nodejs'),
-      Schema = mongoose.Schema;
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
 
-const UserSchema = new Schema({
-  username: {
-    type: String,
-    unique: true,
-    required: true
+const User = sequelize.define('users', {
+  // Model attributes are defined here
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
   },
-  email: {
-    type: String,
-    unique: true,
-    required: true
+  first_name: {
+    type: DataTypes.STRING,
   },
-  password: {
-    type: String,
-    required: true
+  last_name: {
+    type: DataTypes.STRING
+    // allowNull defaults to true
   }
+}, {
+  // Other model options go here
 });
 
-UserSchema.methods.comparePassword = (passw, passwOrig, cb) => {
-  bcrypt.compare(passw, passwOrig, function (err, isMatch) {
-    if (err) {
-      return cb(err);
-    }
-    cb(null, isMatch);
-  });
-};
-
-module.exports = mongoose.model('User', UserSchema);
+module.exports = User
